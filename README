@@ -1,0 +1,94 @@
+IPC CommonAPI C++ FDBus Tools
+------------------------------
+:doctitle: IPC CommonAPI C++ FDBus Tools
+:version:
+
+Copyright
++++++++++
+Copyright (C) 2015-2023, Calvin Ke, All rights reserved.
+
+This file is part of COVESA Project IPC Common API C++.
+Contributions are licensed to the COVESA under one or more Contribution License Agreements or MPL 2.0.
+
+License
++++++++
+This Source Code Form is subject to the terms of the Mozilla Public License, v.
+2.0. If a copy of the MPL was not distributed with this file, you can obtain one
+at http://mozilla.org/MPL/2.0/.
+
+Version
++++++++
+{version}
+
+Build Instructions
+~~~~~~~~~~~~~~~~~~
+An automated build process via Maven for the update-site and the command line
+interface is provided.
+
+To build, change into the `org.genivi.commonapi.fdbus.releng` directory and
+run:
+----
+mvn clean verify -DCOREPATH=< path to your CommonAPI-Tools dir> -Dtarget.id=org.genivi.commonapi.fdbus.target 
+----
+
+If no configuration files are changed, Maven should report successful
+compilation of the following items:
+
+----
+org.genivi.commonapi.fdbus.releng
+org.genivi.commonapi.fdbus.target
+org.genivi.commonapi.fdbus
+org.genivi.commonapi.fdbus.ui
+org.genivi.commonapi.fdbus.feature
+org.genivi.commonapi.fdbus.cli
+org.genivi.commonapi.fdbus.cli.feature
+org.genivi.commonapi.fdbus.cli.product
+org.genivi.commonapi.fdbus.validator
+org.genivi.commonapi.fdbus.validator.feature
+org.genivi.commonapi.fdbus.updatesite
+----
+
+The command line interface will be built for different platforms, with a zip-file
+as generated output. The zip-file can be found in
+`org.genivi.commonapi.fdbus.cli.product/target/products`.
+
+The unzipped results are located in
+`org.genivi.commonapi.fdbus.cli.product/target/products/org.genivi.commonapi.fdbus.cli.product`
+
+An osgi based application will be contained in the zip-file.
+If the application is started without any parameters, the available commandline
+parameters are printed. For example:
+
+----
+
+./org.genivi.commonapi.fdbus.cli.product/target/products/org.genivi.commonapi.fdbus.cli.product/linux/gtk/x86_64/commonapi-FDBus-generator-linux-x86_64
+Command: Console Help
+usage: commonapi-FDBus-generator-linux-x86_64 -h
+ -h,--help   display help of available console commands
+
+Command: Version Information
+usage: commonapi-FDBus-generator-linux-x86_64 [-a | -p]  -v
+ -a,--all       print code generator and plug-in versions
+ -p,--plugins   print plug-in versions
+ -v,--version   print code generator version
+
+Command: CommonAPI Some/IP Code Generation
+usage: commonapi-FDBus-generator-linux-x86_64 [-d <arg>] [-dc <arg>] [-dp
+       <arg>] [-ds <arg>] [-l <arg>] [-ll <arg>] [-ng] [-np] [-ns] [-nsc] [-nv]
+       [-pf] [-sp <arg>] [-wod]
+ -d,--dest <arg>               The default output directory
+ -dc,--dest-common <arg>       The directory for the common code
+ -dp,--dest-proxy <arg>        The directory for proxy code
+ -ds,--dest-stub <arg>         The directory for stub code
+ -l,--license <arg>            The file path to the license text that will be
+                               added to each generated file
+ -ll,--loglevel <arg>          The log level (quiet or verbose)
+ -ng,--no-gen                  Switch off code generation
+ -np,--no-proxy                Switch off generation of proxy code
+ -ns,--no-stub                 Switch off generation of stub code
+ -nsc,--no-sync-calls          Switch off code generation of synchronous methods
+ -nv,--no-val                  Switch off validation of the fdepl file
+ -pf,--printfiles              Print out generated files
+ -sp,--searchpath <arg>        The search path to contain fidl/fdepl files
+ -wod,--without-dependencies   Switch off code generation of dependencies
+----
