@@ -1,4 +1,4 @@
-### CommonAPI C++ SOME/IP Tools
+### CommonAPI C++ FDBus Tools
 
 ##### Copyright
 Copyright (C) 2015-2023, Calvin Ke, All rights reserved.
@@ -24,4 +24,4 @@ mvn -DCOREPATH=<path to your CommonAPI-Tools dir> -Dtarget.id=org.genivi.commona
 ```
 _COREPATH_ is the directory, that contains the target definition folder: `org.genivi.commonapi.fdbus.target`.
 
-After the successful build you will find the commond-line generators archived in `org.genivi.commonapi.fdbus.cli.product/target/products/commonapi_someip_generator.zip` and the update-sites in `org.genivi.commonapi.fdbus.updatesite/target`.
+After the successful build you will find the commond-line generators archived in `org.genivi.commonapi.fdbus.cli.product/target/products/commonapi_fdbus_generator.zip` and the update-sites in `org.genivi.commonapi.fdbus.updatesite/target`.

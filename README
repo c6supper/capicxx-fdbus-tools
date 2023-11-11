@@ -72,7 +72,7 @@ usage: commonapi-FDBus-generator-linux-x86_64 [-a | -p]  -v
  -p,--plugins   print plug-in versions
  -v,--version   print code generator version
 
-Command: CommonAPI Some/IP Code Generation
+Command: CommonAPI FDBus Code Generation
 usage: commonapi-FDBus-generator-linux-x86_64 [-d <arg>] [-dc <arg>] [-dp
        <arg>] [-ds <arg>] [-l <arg>] [-ll <arg>] [-ng] [-np] [-ns] [-nsc] [-nv]
        [-pf] [-sp <arg>] [-wod]
