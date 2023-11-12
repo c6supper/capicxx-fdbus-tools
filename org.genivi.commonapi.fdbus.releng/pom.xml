@@ -2,12 +2,12 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>commonapi</groupId>
-    <artifactId>org.genivi.commonapi.fdbus.releng</artifactId>
+    <artifactId>org.genivi.commonapi..releng</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>../org.genivi.commonapi.fdbus.target</module>
+        <!-- <module>../org.genivi.commonapi.fdbus.target</module>
 
-        <!-- <module>../org.genivi.commonapi.fdbus</module>
+        <module>../org.genivi.commonapi.fdbus</module>
         <module>../org.genivi.commonapi.fdbus.deployment.validator</module>
         <module>../org.genivi.commonapi.fdbus.feature</module>
 
