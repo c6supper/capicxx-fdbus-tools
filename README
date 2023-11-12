@@ -38,13 +38,13 @@ compilation of the following items:
 org.genivi.commonapi.fdbus.releng
 org.genivi.commonapi.fdbus.target
 org.genivi.commonapi.fdbus
-org.genivi.commonapi.fdbus.ui
+<!-- org.genivi.commonapi.fdbus.ui -->
 org.genivi.commonapi.fdbus.feature
 org.genivi.commonapi.fdbus.cli
 org.genivi.commonapi.fdbus.cli.feature
 org.genivi.commonapi.fdbus.cli.product
-org.genivi.commonapi.fdbus.validator
-org.genivi.commonapi.fdbus.validator.feature
+<!-- org.genivi.commonapi.fdbus.validator
+org.genivi.commonapi.fdbus.validator.feature -->
 org.genivi.commonapi.fdbus.updatesite
 ----
 

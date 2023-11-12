@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GENIVI CommonAPI FDBus Console Interface
+Bundle-SymbolicName: org.genivi.commonapi.fdbus.cli;singleton:=true
+Bundle-Version: 3.2.14.qualifier
+Bundle-Activator: org.genivi.commonapi.fdbus.cli.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.xtext;bundle-version="[2.7.0,3.0.0)";visibility:=reexport,
+ org.franca.core.dsl;bundle-version="[0.13.1,0.14.0)";visibility:=reexport,
+ org.franca.deploymodel.dsl;bundle-version="[0.13.1,0.14.0)";visibility:=reexport,
+ org.genivi.commonapi.console;bundle-version="3.2.14",
+ org.genivi.commonapi.fdbus;bundle-version="3.2.14",
+ org.genivi.commonapi.fdbus.deployment.validator;bundle-version="3.2.14"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: BMW AG
+Automatic-Module-Name: org.genivi.commonapi.fdbus.cli

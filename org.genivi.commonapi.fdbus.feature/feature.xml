@@ -20,18 +20,18 @@
          version="3.2.14.qualifier"
          unpack="false"/>
 
-   <plugin
+   <!-- <plugin
          id="org.genivi.commonapi.fdbus.ui"
          download-size="0"
          install-size="0"
          version="3.2.14.qualifier"
-         unpack="false"/>
+         unpack="false"/> -->
 
-   <plugin
+   <!-- <plugin
          id="org.genivi.commonapi.fdbus.deployment.validator"
          download-size="0"
          install-size="0"
          version="3.2.14.qualifier"
-         unpack="false"/>
+         unpack="false"/> -->
 
 </feature>

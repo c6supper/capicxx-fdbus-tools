@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.genivi.commonapi.fdbus.feature</name>
+	<name>org.genivi.commonapi.fdbus.cli.product</name>
 	<comment></comment>
 	<projects>
-		<project>org.genivi.commonapi.fdbus</project>
-		<!-- <project>org.genivi.commonapi.fdbus.ui</project> -->
 	</projects>
 	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.pde.FeatureBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
@@ -20,11 +13,10 @@
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
-		<nature>org.eclipse.pde.FeatureNature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1699765535889</id>
+			<id>1699779415958</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

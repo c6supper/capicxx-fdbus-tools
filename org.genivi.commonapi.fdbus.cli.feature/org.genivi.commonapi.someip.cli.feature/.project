@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.genivi.commonapi.fdbus.feature</name>
+	<name>org.genivi.commonapi.fdbus.cli.feature</name>
 	<comment></comment>
 	<projects>
-		<project>org.genivi.commonapi.fdbus</project>
-		<!-- <project>org.genivi.commonapi.fdbus.ui</project> -->
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -24,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1699765535889</id>
+			<id>1699779415955</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

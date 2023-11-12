@@ -9,8 +9,8 @@ import org.genivi.commonapi.core.preferences.PreferenceConstants;
 
 public interface PreferenceConstantsFDBus extends PreferenceConstants
 {
-    public static final String SCOPE                   = "org.genivi.commonapi.fdbus.ui";
-    public static final String PROJECT_PAGEID          = "org.genivi.commonapi.fdbus.ui.preferences.CommonAPIFDBusPreferencePage";
+    // public static final String SCOPE                   = "org.genivi.commonapi.fdbus.ui";
+    // public static final String PROJECT_PAGEID          = "org.genivi.commonapi.fdbus.ui.preferences.CommonAPIFDBusPreferencePage";
 
     // preference keys
     public static final String P_LICENSE_FDBUS        	= P_LICENSE;
