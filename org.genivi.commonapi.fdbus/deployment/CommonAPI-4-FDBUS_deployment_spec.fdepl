@@ -1,0 +1,233 @@
+/*
+ * Copyright (C) 2019 Bayerische Motoren Werke AG (BMW).
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Version 2.0
+ *
+ * This is the Franca deployment specification to be used for CommonAPI C++
+ * FDBus. It contains all available configuration parameters for the
+ * FDBus protocol and refers to the component model deployment concept.
+ */
+
+import "platform:/plugin/org.genivi.commonapi.core/deployment/CommonAPI-4_deployment_spec.fdepl"
+
+specification org.genivi.commonapi.fdbus.deployment extends org.genivi.commonapi.core.deployment {
+
+    for instances {
+        FDBusInstanceID:            Integer                         ;
+
+        FDBusUnicastAddress:        String                          (default: "");
+        FDBusReliableUnicastPort:   Integer                         (default: 0);
+        FDBusUnreliableUnicastPort: Integer                         (default: 0);
+
+        /*
+         * The following three arrays must be used together, meaning the configuration of
+         * multicast address and port for an eventgroup is done by setting
+         *    FDBusMulticastEventGroup[X] = <eventgroup identifier>
+         *    FDBusMulticastAddresses[X] = <multicast address for FDBusMulticastEventGroups[X]>
+         *    FDBusMulticastPorts[X] = <multicast port for FDBusMulticastEventGroups[X]>
+         *    FDBusMulticastThreshold[X] = <specifies when to use multicast and when to use unicast to send a notification event. Must be set to a non-negative number.
+         *                                  If it is set to zero, all events of the eventgroup will be sent by unicast. Otherwise, the events will be sent by unicast as
+         *                                  long as the number of subscribers is lower than the threshold and by multicast if the number of subscribers is greater or
+         *                                  equal. This means, a threshold of 1 will lead to all events being sent by multicast. The default value is 0.
+         */
+        FDBusMulticastEventGroups:  Integer[]                       (optional);
+        FDBusMulticastAddresses:    String[]                        (optional);
+        FDBusMulticastPorts:        Integer[]                       (optional);
+        FDBusMulticastThreshold:    Integer[]                       (optional);
+
+        /*
+         * Define how to retrieve an error message and map it to Franca error parameters
+         */
+        FDBusDefaultErrorCoding:    {Header}                        (default: Header);
+    }
+
+    for interfaces {
+        FDBusServiceID:             Integer                         ;
+        FDBusEventGroups:           Integer[]                       (optional);
+    }
+
+    for attributes {
+
+        FDBusAttributeReliable:     Boolean                         (default: false);
+
+        FDBusGetterID:              Integer                         (optional);
+        FDBusSetterID:              Integer                         (optional);
+        FDBusNotifierID:            Integer                         (optional);
+        FDBusNotifierEventGroups:   Integer[]                       (optional);
+        FDBusEventGroups:           Integer[]                       (optional);
+        
+        /* Zugverfahren, parameters in ms */
+        FDBusGetterMaxRetentionTime:            Integer             (default: 5);
+        FDBusSetterMaxRetentionTime:            Integer             (default: 5);
+        FDBusNotifierMaxRetentionTime:          Integer             (default: 5);
+        FDBusGetterResponseMaxRetentionTime:    Integer             (default: 0);
+        FDBusSetterResponseMaxRetentionTime:    Integer             (default: 0);
+       
+        FDBusGetterRequestDebounceTime:         Integer             (default: 0);
+        FDBusSetterRequestDebounceTime:         Integer             (default: 0);
+        FDBusNotifierDebounceTime:              Integer             (default: 0);
+        FDBusGetterResponseDebounceTime:        Integer             (default: 0);
+        FDBusSetterResponseDebounceTime:        Integer             (default: 0);
+        
+        /* FDBus-TP, time parameters in ms */
+        FDBusSetterSegmentLength:                Integer            (optional);
+        FDBusSetterSeparationTime:               Integer            (optional);
+        FDBusGetterSegmentLengthResponse:        Integer            (optional);
+        FDBusGetterSeparationTimeResponse:       Integer            (optional);
+        FDBusNotifierSegmentLength:              Integer            (optional);
+        FDBusNotifierSeparationTime:             Integer            (optional);
+     
+        /* E2E */
+        FDBusAttributeEndianess:    {le, be}                        (default: be);
+        FDBusAttributeCRCWidth:     {zero, one, four}               (default: zero);
+    }
+    
+    for methods {
+        
+        FDBusReliable:              Boolean                         (default: false);
+        
+        FDBusMethodID:              Integer                         ;
+        
+        /* Zugverfahren, parameters in ms */
+        FDBusMethodMaxRetentionTime:         Integer                (default: 5);
+        FDBusMethodResponseMaxRetentionTime: Integer                (default: 0);
+        FDBusMethodRequestDebounceTime:      Integer                (default: 0);
+        FDBusMethodResponseDebounceTime:     Integer                (default: 0);
+        
+        /* FDBus-TP, time parameters in ms */
+        FDBusMethodSegmentLength:                Integer            (optional);
+        FDBusMethodSeparationTime:               Integer            (optional);
+        FDBusMethodSegmentLengthResponse:        Integer            (optional);
+        FDBusMethodSeparationTimeResponse:       Integer            (optional);
+             
+        /* E2E */
+        FDBusMethodEndianess:       {le, be}                        (default: be);
+        FDBusMethodCRCWidth:        {zero, one, four}               (default: zero);
+
+        /* define how to retrieve an error message and map it to Franca error parameters */
+        FDBusErrorCoding:           {Header}                        (default: Header);
+    }
+
+    for broadcasts {
+        
+        FDBusReliable:              Boolean                         (default: false);
+        
+        FDBusEventID:               Integer                         ;
+        FDBusEventGroups:           Integer[]                       (optional);
+        
+        /* Zugverfahren, parameters in ms */
+        FDBusBroadcastMaxRetentionTime:      Integer                (default: 5);
+        FDBusBroadcastDebounceTime:          Integer                (default: 0);
+        
+        /* FDBus-TP, time parameters in ms */
+        FDBusBroadcastSegmentLength:             Integer            (optional);
+        FDBusBroadcastSeparationTime:            Integer            (optional);
+        
+        /* E2E */
+        FDBusBroadcastEndianess:    {le, be}                        (default: be);
+        FDBusBroadcastCRCWidth:     {zero, one, four}               (default: zero);
+
+    }
+
+    for arrays {
+        FDBusArrayMinLength:        Integer                         (default: 0);
+        FDBusArrayMaxLength:        Integer                         (default: 0);
+        /*
+         * If FDBusArrayLengthWidth == 0, the array has FDBusArrayMaxLength elements.
+         * If FDBusArrayLengthWidth == 1, 2 or 4 bytes, FDBusArrayMinLength and
+         * FDBusArrayMaxLength are ignored.
+         */
+        FDBusArrayLengthWidth:      Integer                         (default: 4);
+    }
+
+    for unions {
+        /*
+         * The length field of the union contains the size of the biggest element
+         * in the union in bytes;
+         * The FDBusUnionLengthWidth determines the size of the length field;
+         * allowed values are 0, 1, 2, 4.
+         * 0 means that all types in the union have the same size.
+         */
+        FDBusUnionLengthWidth:      Integer                         (optional);
+        /*
+         * 2^FDBusUnionTypeWidth*8 different Types in the union.
+         */
+        FDBusUnionTypeWidth:        Integer                         (optional);
+        /*
+         * True means length field before type field, false means length field
+         * after type field.
+         */
+        FDBusUnionDefaultOrder:     Boolean                         (optional);
+        /*
+         * If FDBusUnionLengthWidth == 0, FDBusUnionMaxLength must be set to the
+         * size of the biggest contained type.
+         */
+        FDBusUnionMaxLength:        Integer                         (optional);
+    }
+
+    for structs {
+        /*
+         * The length field of the struct contains the size of the struct in bytes;
+         * The FDBusStructLengthWidth determines the size of the length field;
+         * allowed values are 0, 1, 2, 4. 0 means that there is no length field.
+         */
+        FDBusStructLengthWidth:     Integer                         (default: 0);
+    }
+
+    for enumerations {
+        // Bytes of base type
+        FDBusEnumWidth:             Integer                         (default: 1);
+        // Bits to serialize/deserialize
+        FDBusEnumBitWidth:          Integer                         (optional);
+        // Invalid value
+        FDBusEnumInvalidValue:      Integer                         (optional);
+    }
+
+    for strings {
+        FDBusStringLength:          Integer                         (default: 0);
+        /*
+         * If LengthWidth == 0, the length of the string has StringLength bytes.
+         * If LengthWidth == 1, 2 or 4 bytes, FDBusStringLength is ignored.
+         */
+        FDBusStringLengthWidth:     Integer                         (default: 4);
+        /*
+         * utf16le LittleEndian, utf16be BigEndian.
+         */
+        FDBusStringEncoding:        {utf8, utf16le, utf16be}        (default: utf8);
+    }
+
+    for byte_buffers {
+        FDBusByteBufferMaxLength:   Integer                        (default: 0);    // 0 means unlimited length
+        FDBusByteBufferMinLength:   Integer                        (default: 0);
+        /*
+         * If FDBusByteBufferLengthWidth == 0, the buffer has FDBusByteBufferMaxLength elements.
+         * If FDBusByteBufferLengthWidth == 1, 2 or 4 bytes, FDBusByteBufferMinLength and
+         * FDBusArrayMaxLength are cut off.
+         */
+        FDBusByteBufferLengthWidth:   Integer                      (default: 4);
+    }
+
+    for integers {
+        FDBusIntegerBitWidth:       Integer                         (optional);
+        FDBusIntegerInvalidValue:   Integer                         (optional);
+    }
+
+    /*
+     * From here workaround for missing Franca deployment features.
+     */
+    for attributes {
+        FDBusAttrMapMinLength:      Integer                         (optional);
+        FDBusAttrMapMaxLength:      Integer                         (optional);
+        FDBusAttrMapLengthWidth:    Integer                         (optional);
+    }
+
+    for arguments {
+        FDBusArgMapMinLength:        Integer                         (optional);
+        FDBusArgMapMaxLength:        Integer                         (optional);
+        FDBusArgMapLengthWidth:      Integer                         (optional);
+    }
+}

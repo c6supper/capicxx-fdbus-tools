@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.genivi.commonapi.fdbus.target</name>
+	<name>org.genivi.commonapi.fdbus.updatesite</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1699668913810</id>
+			<id>1699765535893</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

@@ -1,0 +1,236 @@
+/*
+ * Copyright (C) 2015 Bayerische Motoren Werke AG (BMW).
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Version 1.0
+ *
+ * This is the Franca deployment specification to be used for CommonAPI C++
+ * FDBus. It contains all available configuration parameters for the
+ * FDBus protocol and refers to the component model deployment concept.
+ */
+
+import "platform:/plugin/org.genivi.commonapi.core/deployment/CommonAPI_deployment_spec.fdepl"
+
+specification org.genivi.commonapi.fdbus.deployment extends org.genivi.commonapi.core.deployment {
+
+    for instances {
+        FDBusInstanceID:            Integer                         ;
+
+        FDBusUnicastAddress:        String                          (default: "");
+        FDBusReliableUnicastPort:   Integer                         (default: 0);
+        FDBusUnreliableUnicastPort: Integer                         (default: 0);
+
+        /*
+         * The following three arrays must be used together, meaning the configuration of
+         * multicast address and port for an eventgroup is done by setting
+         *    FDBusMulticastEventGroup[X] = <eventgroup identifier>
+         *    FDBusMulticastAddresses[X] = <multicast address for FDBusMulticastEventGroups[X]>
+         *    FDBusMulticastPorts[X] = <multicast port for FDBusMulticastEventGroups[X]>
+         */
+        FDBusMulticastEventGroups:  Integer[]                       (optional);
+        FDBusMulticastAddresses:    String[]                        (optional);
+        FDBusMulticastPorts:        Integer[]                       (optional);
+
+        /*
+         * Define how to retrieve an error message and map it to Franca error parameters
+         */
+        FDBusDefaultErrorCoding:    {Header}                        (default: Header);
+    }
+
+    for interfaces {
+        FDBusServiceID:             Integer                         ;
+        FDBusEventGroups:           Integer[]                       (optional);
+    }
+
+    for attributes {
+        FDBusGetterID:              Integer                         (optional);
+        FDBusGetterReliable:        Boolean                         (default: false);
+        FDBusGetterPriority:        Integer                         (optional);
+
+        FDBusSetterID:              Integer                         (optional);
+        FDBusSetterReliable:        Boolean                         (default: false);
+        FDBusSetterPriority:        Integer                         (optional);
+
+        FDBusNotifierID:            Integer                         (optional);
+        FDBusNotifierReliable:      Boolean                         (default: false);
+        FDBusNotifierPriority:      Integer                         (optional);
+        FDBusNotifierMulticast:     Boolean                         (default: false);
+
+        /*
+         * The event group is necessary if the attribute is notifiable.
+         */
+        FDBusEventGroups:           Integer[]                       (optional);
+
+        FDBusAttributeEndianess:    {le, be}                        (default: be);
+        FDBusAttributeCRCWidth:     {zero, one, four}               (default: zero);
+    }
+
+    for methods {
+        FDBusMethodID:              Integer                         ;
+        FDBusReliable:              Boolean                         (default: false);
+        FDBusPriority:              Integer                         (optional);
+
+        /*
+         * define how to retrieve an error message and map it to Franca error parameters
+         */
+        FDBusErrorCoding:           {Header}                        (default: Header);
+
+        FDBusMethodEndianess:       {le, be}                        (default: be);
+        FDBusMethodCRCWidth:        {zero, one, four}               (default: zero);
+    }
+
+    for broadcasts {
+        FDBusEventID:               Integer                         ;
+        FDBusReliable:              Boolean                         (default: false);
+        FDBusPriority:              Integer                         (optional);
+        FDBusMulticast:             Boolean                         (default: false);
+        FDBusEventGroups:           Integer[]                       (optional);
+
+        FDBusBroadcastEndianess:    {le, be}                        (default: be);
+        FDBusBroadcastCRCWidth:     {zero, one, four}               (default: zero);
+    }
+
+    for arrays {
+        FDBusArrayMinLength:        Integer                         (default: 0);
+        FDBusArrayMaxLength:        Integer                         (default: 0);
+        /*
+         * If FDBusArrayLengthWidth == 0, the array has FDBusArrayMaxLength elements.
+         * If FDBusArrayLengthWidth == 1, 2 or 4 bytes, FDBusArrayMinLength and
+         * FDBusArrayMaxLength are ignored.
+         */
+        FDBusArrayLengthWidth:      Integer                         (default: 4);
+    }
+
+    for unions {
+        /*
+         * The length field of the union contains the size of the biggest element
+         * in the union in bytes;
+         * The FDBusUnionLengthWidth determines the size of the length field;
+         * allowed values are 0, 1, 2, 4.
+         * 0 means that all types in the union have the same size.
+         */
+        FDBusUnionLengthWidth:      Integer                         (optional);
+        /*
+         * 2^FDBusUnionTypeWidth*8 different Types in the union.
+         */
+        FDBusUnionTypeWidth:        Integer                         (optional);
+        /*
+         * True means length field before type field, false means length field
+         * after type field.
+         */
+        FDBusUnionDefaultOrder:     Boolean                         (optional);
+        /*
+         * If FDBusUnionLengthWidth == 0, FDBusUnionMaxLength must be set to the
+         * size of the biggest contained type.
+         */
+        FDBusUnionMaxLength:        Integer                         (optional);
+    }
+
+    for structs {
+        /*
+         * The length field of the struct contains the size of the struct in bytes;
+         * The FDBusStructLengthWidth determines the size of the length field;
+         * allowed values are 0, 1, 2, 4. 0 means that there is no length field.
+         */
+        FDBusStructLengthWidth:     Integer                         (default: 0);
+    }
+
+    for enumerations {
+        // Bytes of base type
+        FDBusEnumWidth:             Integer                         (default: 4);
+        // Bits to serialize/deserialize
+        FDBusEnumBitWidth:          Integer                         (optional);
+        // Invalid value
+        FDBusEnumInvalidValue:		 Integer						 (optional);
+    }
+
+    for strings {
+        FDBusStringLength:          Integer                         (default: 0);
+        /*
+         * If LengthWidth == 0, the length of the string has StringLength bytes.
+         * If LengthWidth == 1, 2 or 4 bytes, FDBusStringLength is ignored.
+         */
+        FDBusStringLengthWidth:     Integer                         (default: 4);
+        /*
+         * utf16le LittleEndian, utf16be BigEndian.
+         */
+        FDBusStringEncoding:        {utf8, utf16le, utf16be}        (default: utf8);
+    }
+
+    for byte_buffers {
+        FDBusByteBufferMaxLength:   Integer                        (default: 0);    // 0 means unlimited length
+        FDBusByteBufferMinLength:   Integer                        (default: 0);
+    }
+
+    /*
+     * From here workaround for missing Franca deployment features.
+     */
+    for attributes {
+        FDBusAttrArrayMinLength:    Integer                         (optional);
+        FDBusAttrArrayMaxLength:    Integer                         (optional);
+        FDBusAttrArrayLengthWidth:  Integer                         (optional);
+        FDBusAttrMapMinLength:      Integer                         (optional);
+        FDBusAttrMapMaxLength:      Integer                         (optional);
+        FDBusAttrMapLengthWidth:    Integer                         (optional);
+        FDBusAttrUnionLengthWidth:  Integer                         (optional);
+        FDBusAttrUnionTypeWidth:    Integer                         (optional);
+        FDBusAttrUnionDefaultOrder: Boolean                         (optional);
+        FDBusAttrUnionMaxLength:    Integer                         (optional);
+        FDBusAttrStructLengthWidth: Integer                         (optional);
+        FDBusAttrEnumWidth:         Integer                         (optional);
+        FDBusAttrEnumBitWidth:      Integer                         (optional);
+        FDBusAttrIntegerBitWidth:   Integer                         (optional);
+    }
+
+    for arguments {
+        FDBusArgArrayMinLength:      Integer                         (optional);
+        FDBusArgArrayMaxLength:      Integer                         (optional);
+        FDBusArgArrayLengthWidth:    Integer                         (optional);
+        FDBusArgMapMinLength:        Integer                         (optional);
+        FDBusArgMapMaxLength:        Integer                         (optional);
+        FDBusArgMapLengthWidth:      Integer                         (optional);
+        FDBusArgUnionLengthWidth:    Integer                         (optional);
+        FDBusArgUnionTypeWidth:      Integer                         (optional);
+        FDBusArgUnionDefaultOrder:   Boolean                         (optional);
+        FDBusArgUnionMaxLength:      Integer                         (optional);
+        FDBusArgStructLengthWidth:   Integer                         (optional);
+        FDBusArgEnumWidth:           Integer                         (optional);
+        FDBusArgEnumBitWidth:        Integer                         (optional);
+        FDBusArgEnumInvalidValue:    Integer                         (optional);
+        FDBusArgIntegerBitWidth:     Integer                         (optional);
+        FDBusArgIntegerInvalidValue: Integer                         (optional);
+    }
+
+    for struct_fields {
+        FDBusStructArrayMinLength:      Integer                       (optional);
+        FDBusStructArrayMaxLength:      Integer                       (optional);
+        FDBusStructArrayLengthWidth:    Integer                       (optional);
+        FDBusStructUnionLengthWidth:    Integer                       (optional);
+        FDBusStructUnionTypeWidth:      Integer                       (optional);
+        FDBusStructUnionDefaultOrder:   Boolean                       (optional);
+        FDBusStructUnionMaxLength:      Integer                       (optional);
+        FDBusStructStructLengthWidth:   Integer                       (optional);
+        FDBusStructEnumWidth:           Integer                       (optional);
+        FDBusStructEnumBitWidth:        Integer                       (optional);
+        FDBusStructEnumInvalidValue:    Integer                       (optional);
+        FDBusStructIntegerBitWidth:     Integer                       (optional);
+        FDBusStructIntegerInvalidValue: Integer                       (optional);
+    }
+
+    for union_fields {
+        FDBusUnionArrayMinLength:    Integer                        (optional);
+        FDBusUnionArrayMaxLength:    Integer                        (optional);
+        FDBusUnionArrayLengthWidth:  Integer                        (optional);
+        FDBusUnionUnionLengthWidth:  Integer                        (optional);
+        FDBusUnionUnionTypeWidth:    Integer                        (optional);
+        FDBusUnionUnionDefaultOrder: Boolean                        (optional);
+        FDBusUnionUnionMaxLength:    Integer                        (optional);
+        FDBusUnionStructLengthWidth: Integer                        (optional);
+        FDBusUnionEnumWidth:         Integer                        (optional);
+        FDBusUnionEnumBitWidth:      Integer                        (optional);
+        FDBusUnionIntegerBitWidth:   Integer                        (optional);
+    }
+}
