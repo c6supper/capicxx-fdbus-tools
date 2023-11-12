@@ -25,3 +25,12 @@ mvn -DCOREPATH=<path to your CommonAPI-Tools dir> -Dtarget.id=org.genivi.commona
 _COREPATH_ is the directory, that contains the target definition folder: `org.genivi.commonapi.fdbus.target`.
 
 After the successful build you will find the commond-line generators archived in `org.genivi.commonapi.fdbus.cli.product/target/products/commonapi_fdbus_generator.zip` and the update-sites in `org.genivi.commonapi.fdbus.updatesite/target`.
+
+
+
+> [!NOTE]
+> After a successfully built, use maven offline mode which should be a "-o" switch. [p2 issue](https://stackoverflow.com/questions/10085485/disable-fetching-of-p2-repository-indexes).
+
+
+> [!NOTE]
+> The "CommonAPI-Tools" actually stands for "capicxx-core-tools".
