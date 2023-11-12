@@ -43,8 +43,8 @@ org.genivi.commonapi.fdbus.feature
 org.genivi.commonapi.fdbus.cli
 org.genivi.commonapi.fdbus.cli.feature
 org.genivi.commonapi.fdbus.cli.product
-<!-- org.genivi.commonapi.fdbus.validator
-org.genivi.commonapi.fdbus.validator.feature -->
+org.genivi.commonapi.fdbus.validator
+org.genivi.commonapi.fdbus.validator.feature
 org.genivi.commonapi.fdbus.updatesite
 ----
 

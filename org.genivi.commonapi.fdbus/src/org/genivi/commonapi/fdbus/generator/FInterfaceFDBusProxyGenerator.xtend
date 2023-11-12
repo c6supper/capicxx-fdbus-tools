@@ -366,7 +366,7 @@ class FInterfaceFDBusProxyGenerator {
         for (FDExtensionRoot p : _providers) {
             for (instance : ProviderUtils.getInstances(p)) {
                 if (instance.target == _interface) {
-                    var id = _interface.fdbusAccessor.getFDBusServiceID(_interface)
+                    var id = _interface.FDBusAccessor.getFDBusServiceID(_interface)
                     if (id !== null) {
                         return "0x" + Integer.toHexString(id)
                     }
@@ -374,7 +374,7 @@ class FInterfaceFDBusProxyGenerator {
             }
         }
         // If no providers are available, try to get the service id directly
-        var serviceid = _interface.fdbusAccessor.getFDBusServiceID(_interface)
+        var serviceid = _interface.FDBusAccessor.getFDBusServiceID(_interface)
         if(serviceid !== null) {
             return "0x" + Integer.toHexString(serviceid)
         }

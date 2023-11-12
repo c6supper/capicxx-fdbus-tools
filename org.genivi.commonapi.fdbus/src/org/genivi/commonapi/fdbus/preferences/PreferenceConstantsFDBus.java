@@ -9,6 +9,7 @@ import org.genivi.commonapi.core.preferences.PreferenceConstants;
 
 public interface PreferenceConstantsFDBus extends PreferenceConstants
 {
+    // cli should be fine, don't support UI yet.
     // public static final String SCOPE                   = "org.genivi.commonapi.fdbus.ui";
     // public static final String PROJECT_PAGEID          = "org.genivi.commonapi.fdbus.ui.preferences.CommonAPIFDBusPreferencePage";
 

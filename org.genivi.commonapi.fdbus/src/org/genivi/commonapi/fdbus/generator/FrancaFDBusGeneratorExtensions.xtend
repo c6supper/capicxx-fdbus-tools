@@ -256,7 +256,7 @@ class FrancaFDBusGeneratorExtensions {
     }
 
     def String getFDBusServiceID(FInterface _interface) {
-        var serviceid = _interface.fdbusAccessor.getFDBusServiceID(_interface)
+        var serviceid = _interface.FDBusAccessor.getFDBusServiceID(_interface)
         if (serviceid !== null) {
             return "0x" + Integer.toHexString(serviceid)
         }

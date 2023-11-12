@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GENIVI CommonAPI Some/IP Deployment Validator
+Bundle-SymbolicName: org.genivi.commonapi.fdbus.deployment.validator;singleton:=true
+Bundle-Version: 3.2.14.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: BMW AG
+Export-Package: org.genivi.commonapi.fdbus.deployment.validator
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0";visibility:=reexport,
+ org.eclipse.xtext;bundle-version="[2.7.0,3.0.0)";visibility:=reexport,
+ org.eclipse.xtext.generator;bundle-version="[2.7.0,3.0.0)";visibility:=reexport,
+ org.eclipse.xtext.util;bundle-version="[2.7.0,3.0.0)";visibility:=reexport,
+ org.franca.core.dsl;bundle-version="[0.13.1,0.14.0)";visibility:=reexport,
+ org.franca.deploymodel.dsl;bundle-version="[0.13.1,0.14.0)";visibility:=reexport,
+ org.franca.deploymodel.ext.providers;bundle-version="[0.13.1,0.14.0)"
+Automatic-Module-Name: org.genivi.commonapi.fdbus.deployment.validator

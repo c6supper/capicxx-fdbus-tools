@@ -7,14 +7,13 @@
     <modules>
         <module>../org.genivi.commonapi.fdbus.target</module>
         <module>../org.genivi.commonapi.fdbus</module>
-        <!-- <module>../org.genivi.commonapi.fdbus.deployment.validator</module> -->
+        <module>../org.genivi.commonapi.fdbus.deployment.validator</module>
         <module>../org.genivi.commonapi.fdbus.feature</module>
         <module>../org.genivi.commonapi.fdbus.cli</module>
         <module>../org.genivi.commonapi.fdbus.cli.feature</module>
         <module>../org.genivi.commonapi.fdbus.cli.product</module>
-        <!-- <module>../org.genivi.commonapi.fdbus.ui</module>
         <module>../org.genivi.commonapi.fdbus.validator</module>
-        <module>../org.genivi.commonapi.fdbus.validator.feature</module> -->
+        <module>../org.genivi.commonapi.fdbus.validator.feature</module>
         <module>../org.genivi.commonapi.fdbus.updatesite</module>
     </modules>
     <parent>
